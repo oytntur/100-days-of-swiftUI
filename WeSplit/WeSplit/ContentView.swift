@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var tapCount = 0
+    @State private var tapCount = 0
+    
+    @State private var name = ""
     
     
     var body: some View {
@@ -22,12 +24,10 @@ struct ContentView: View {
                         tapCount += 1
                     }
                 }
-                Text("Hello, World!")
-                Text("Hello, World!")
-                Text("Hello, World!")
-                Text("Hello, World!")
-                Text("Hello, World!")
-                Text("Hello, World!")
+                Section{
+                    TextField("Enter Your Name",text: $name)
+                    Text("Your Name is: \(name)")
+                }
             }
             .navigationTitle("WeSplit")
         }
