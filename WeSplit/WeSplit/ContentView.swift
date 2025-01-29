@@ -12,14 +12,15 @@ struct ContentView: View {
     
     @State private var name = ""
     
+    let students: [String] = ["Ali", "Veli", "Can", "Omer"]
+    
+    @State private var selectedStudent: String = "Ali"
+    
     
     var body: some View {
         NavigationStack{
             Form {
                 Section{
-                    Text("Hello, World!")
-                    Text("Hello, World!")
-                    Text("Hello, World!")
                     Button("Tap Count: \(tapCount)") {
                         tapCount += 1
                     }
@@ -28,13 +29,21 @@ struct ContentView: View {
                     TextField("Enter Your Name",text: $name)
                     Text("Your Name is: \(name)")
                 }
-                ForEach(0..<100){ number in Text("Row:\(number+1)")
+                Section(){
+                    Picker("Select Your Student",selection: $selectedStudent){
+                        ForEach(students,id: \.self){
+                            Text($0)
+                        }
+                    }
+                }
                 }
             }
             .navigationTitle("WeSplit")
+            
+            
         }
     }
-}
+
 
 #Preview {
     ContentView()
