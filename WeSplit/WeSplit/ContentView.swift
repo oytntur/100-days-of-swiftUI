@@ -28,6 +28,8 @@ struct ContentView: View {
                     TextField("Enter Your Name",text: $name)
                     Text("Your Name is: \(name)")
                 }
+                ForEach(0..<100){ number in Text("Row:\(number+1)")
+                }
             }
             .navigationTitle("WeSplit")
         }
