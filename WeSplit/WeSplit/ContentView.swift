@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var checkAmount = 0.0
     @State private var numberOfPeople = 2
     @State private var tipPercentage = 10
+    @FocusState private var amountIsFocused: Bool
     
     let tipPercentages = [0, 5, 10, 20, 30]
     
@@ -33,7 +34,7 @@ struct ContentView: View {
             Form {
                 Section{
                     TextField("Check Amount", value: $checkAmount, format: .currency(code: Locale.current.currency?.identifier ?? "TRY"))
-                        .keyboardType(.decimalPad)
+                        .keyboardType(.decimalPad).focused($amountIsFocused)
                     
                     // Picker default shows for because of indexing picker uses number of people as index if we dont provide id
                     Picker("Number Of People",selection: $numberOfPeople){
@@ -59,6 +60,13 @@ struct ContentView: View {
                 }
                 
             }.navigationTitle("WeSplit")
+                .toolbar{
+                    if amountIsFocused{
+                        Button("Done"){
+                            amountIsFocused = false
+                        }
+                    }
+                }
         }
         
         }
