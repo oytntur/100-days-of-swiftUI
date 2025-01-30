@@ -12,6 +12,8 @@ struct ContentView: View {
     @State private var numberOfPeople = 2
     @State private var tipPercentage = 20
     
+    let tipPercentages = [0, 10, 15, 20, 25, 30]
+    
     
     var body: some View {
         Text("Hello, World!")
