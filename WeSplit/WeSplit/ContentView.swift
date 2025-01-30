@@ -21,8 +21,15 @@ struct ContentView: View {
                 Section{
                     TextField("Check Amount", value: $checkAmount, format: .currency(code: Locale.current.currency?.identifier ?? "TRY"))
                         .keyboardType(.decimalPad)
-                        
-                }
+                    
+                    Picker("Number Of People",selection: $numberOfPeople){
+                        ForEach(2..<100, id: \.self){
+                            Text("\($0)")
+                        }
+                    }
+      
+                }.navigationTitle("Form")
+                
             }
         }
         
