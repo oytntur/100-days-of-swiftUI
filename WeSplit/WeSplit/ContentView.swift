@@ -22,13 +22,15 @@ struct ContentView: View {
                     TextField("Check Amount", value: $checkAmount, format: .currency(code: Locale.current.currency?.identifier ?? "TRY"))
                         .keyboardType(.decimalPad)
                     
+                    // Picker default shows for because of indexing picker uses number of people as index if we dont provide id
                     Picker("Number Of People",selection: $numberOfPeople){
-                        ForEach(2..<100, id: \.self){
-                            Text("\($0)")
+                        ForEach(2...100, id: \.self){
+                            Text("\($0) Person")
                         }
                     }
+                    .pickerStyle(.navigationLink)
       
-                }.navigationTitle("Form")
+                }.navigationTitle("WeSplit")
                 
             }
         }
