@@ -19,7 +19,8 @@ struct ContentView: View {
         NavigationStack{
             Form {
                 Section{
-                    TextField("Check Amount", value: $checkAmount, format: .currency(code: "TRY"))
+                    TextField("Check Amount", value: $checkAmount, format: .currency(code: Locale.current.currency?.identifier ?? "TRY"))
+                        .keyboardType(.decimalPad)
                         
                 }
             }
