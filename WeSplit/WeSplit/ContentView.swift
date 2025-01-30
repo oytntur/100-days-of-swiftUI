@@ -41,6 +41,13 @@ struct ContentView: View {
                     
                 }
                 
+                Section("Payment by person"){
+                    var perPerson:Double {
+                        checkAmount * (1 + Double(tipPercentage)/100) / Double(numberOfPeople)
+                    }
+                    return Text ("\(perPerson)")
+                }
+                
             }.navigationTitle("WeSplit")
         }
         
