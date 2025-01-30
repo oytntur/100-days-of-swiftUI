@@ -16,7 +16,15 @@ struct ContentView: View {
     
     
     var body: some View {
-        Text("Hello, World!")
+        NavigationStack{
+            Form {
+                Section{
+                    TextField("Check Amount", value: $checkAmount, format: .currency(code: "TRY"))
+                        
+                }
+            }
+        }
+        
         }
 }
 
