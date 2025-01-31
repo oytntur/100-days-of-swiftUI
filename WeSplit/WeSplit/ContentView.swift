@@ -13,7 +13,7 @@ struct ContentView: View {
     @State private var tipPercentage = 10
     @FocusState private var amountIsFocused: Bool
     
-    let tipPercentages = [0, 5, 10, 20, 30]
+    let tipPercentages:[Int] = Array(0...100)
     
     var totalPerPerson : Double {
         //calculate the total per person
@@ -26,6 +26,10 @@ struct ContentView: View {
         // let tipValue = checkAmount / 100 * tipSelection
         // let grandTotal = checkAmount + tipValue
         // let amountPerPerson = grandTotal / peopleCount
+    }
+    
+    var tipAmount : Double {
+        checkAmount * (Double(tipPercentage)/100)
     }
     
     
@@ -51,12 +55,22 @@ struct ContentView: View {
                         ForEach(tipPercentages, id:\.self){
                             Text($0, format:.percent)
                         }
-                    }.pickerStyle(.segmented)
+                    }.pickerStyle(.navigationLink)
+                    
+                }
+                
+                Section("Check summary"){
+                    Text("Check Total \(checkAmount.formatted(.currency(code: Locale.current.currency?.identifier ?? "TRY")))")
+                    Text("Tip Percentage \(tipPercentage.formatted(.percent))")
+                    Text("Tip Amount \(tipAmount.formatted(.currency(code: Locale.current.currency?.identifier ?? "TRY")))")
+                    Text("Total \((tipAmount + checkAmount).formatted(.currency(code: Locale.current.currency?.identifier ?? "TRY")))")
+                    
                     
                 }
                 
                 Section("Total by person"){
                     Text(totalPerPerson,format: .currency(code: Locale.current.currency?.identifier ?? "TRY"))
+                   
                 }
                 
             }.navigationTitle("WeSplit")
